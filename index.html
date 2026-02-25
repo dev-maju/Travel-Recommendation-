@@ -1,1 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Recommendations</title>
+    <script defer src="script.js"></script>
+    <style>
+        body { font-family: Arial; margin: 0; }
+        nav {
+            background: #333;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        nav input {
+            padding: 5px;
+        }
+        section {
+            padding: 30px;
+        }
+        .images {
+            display: flex;
+            gap: 20px;
+        }
+        .images img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
 
+<nav>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+    </div>
+    <div>
+        <input type="text" id="searchInput" placeholder="Search recommendation">
+        <button onclick="searchRecommendation()">Search</button>
+        <button onclick="resetSearch()">Reset</button>
+    </div>
+</nav>
+
+<section>
+    <h1>Welcome to Travel Explorer</h1>
+    <p>Discover beautiful beaches, historic temples, and country-based travel recommendations tailored just for you.</p>
+</section>
+
+<section id="beach">
+    <h2>Beach Recommendations</h2>
+    <div class="images">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Beach 1">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Beach 2">
+    </div>
+</section>
+
+<section id="temple">
+    <h2>Temple Recommendations</h2>
+    <div class="images">
+        <img src="https://images.unsplash.com/photo-1548013146-72479768bada" alt="Temple 1">
+        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523" alt="Temple 2">
+    </div>
+</section>
+
+<section id="country">
+    <h2>Country Based Recommendation (Japan)</h2>
+    <div class="images">
+        <img src="https://images.unsplash.com/photo-1505067216369-2d3a3b9bcd7e" alt="Japan 1">
+        <img src="https://images.unsplash.com/photo-1526481280691-7b7a1e5b1b18" alt="Japan 2">
+    </div>
+</section>
+
+</body>
+</html>
