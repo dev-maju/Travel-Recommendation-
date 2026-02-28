@@ -1,34 +1,301 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About Us</title>
-    <style>
-        body { font-family: Arial; margin: 0; }
-        nav {
-            background: #333;
-            padding: 15px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        section { padding: 30px; }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us – AeroDropX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #c9a96e;
+      --gold-light: #e8d5a3;
+      --dark: #0d0d0d;
+      --dark2: #1a1a1a;
+      --mid: #2e2e2e;
+      --light: #f5f0e8;
+      --white: #ffffff;
+      --text-muted: #888;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 48px;
+      background: rgba(13,13,13,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 36px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* HERO */
+    .page-hero {
+      position: relative; height: 55vh; display: flex;
+      align-items: flex-end; padding: 60px 48px;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&q=80') center/cover;
+    }
+    .page-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,1) 0%, rgba(13,13,13,0.3) 70%, rgba(13,13,13,0.5) 100%);
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .page-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300; line-height: 1; color: var(--white);
+    }
+
+    /* MISSION STRIP */
+    .mission-strip {
+      background: var(--dark2);
+      border-top: 1px solid rgba(201,169,110,0.15);
+      border-bottom: 1px solid rgba(201,169,110,0.15);
+      padding: 48px;
+      display: grid; grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      gap: 0;
+    }
+    .stat-divider { background: rgba(201,169,110,0.2); }
+    .stat { padding: 0 48px; text-align: center; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 600; color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; }
+
+    /* STORY */
+    .story {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; min-height: 520px;
+    }
+    .story-img {
+      position: relative; overflow: hidden;
+    }
+    .story-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.85);
+    }
+    .story-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 70%, var(--dark) 100%);
+    }
+    .story-text {
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .story-text .eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px;
+    }
+    .story-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 400; color: var(--white);
+      margin-bottom: 24px; line-height: 1.2;
+    }
+    .story-text p {
+      color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .gold-rule { width: 50px; height: 1px; background: var(--gold); margin-bottom: 24px; }
+
+    /* TEAM */
+    .team-section { padding: 80px 48px; }
+    .team-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 400; margin-bottom: 8px;
+    }
+    .team-sub { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 48px; }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .team-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .team-card:hover { border-color: rgba(201,169,110,0.35); transform: translateY(-4px); }
+    .team-card img { width: 100%; height: 220px; object-fit: cover; object-position: top; display: block; }
+    .team-card-body { padding: 20px; }
+    .team-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); }
+    .team-role { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin: 4px 0 10px; }
+    .team-bio { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* VALUES */
+    .values { background: var(--dark2); padding: 80px 48px; }
+    .values h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; margin-bottom: 48px; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .value-item { border-left: 2px solid var(--gold); padding: 0 0 0 24px; }
+    .value-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .value-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 10px; }
+    .value-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
+
+    /* CTA */
+    .about-cta {
+      padding: 80px 48px; text-align: center;
+      background: linear-gradient(135deg, rgba(201,169,110,0.05) 0%, transparent 70%);
+    }
+    .about-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 400; margin-bottom: 16px; }
+    .about-cta p { color: var(--text-muted); margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .btn-gold {
+      display: inline-block; padding: 14px 36px;
+      background: var(--gold); color: var(--dark);
+      text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 500;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--text-muted); font-size: 0.8rem;
+    }
+    footer a { color: var(--gold); text-decoration: none; }
+  </style>
 </head>
 <body>
 
 <nav>
+  <a href="index.html" class="nav-logo">AeroDropX</a>
+  <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
+    <a href="about.html" class="active">About Us</a>
     <a href="contact.html">Contact Us</a>
+  </div>
 </nav>
 
-<section>
-    <h1>About Us</h1>
-    <p>We are passionate about helping travelers explore beautiful destinations around the world.</p>
-    <p>Our mission is to provide personalized travel recommendations based on your interests.</p>
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-content">
+    <p class="page-eyebrow">Who we are</p>
+    <h1 class="page-title">About<br/>AeroDropX</h1>
+  </div>
 </section>
+
+<!-- STATS -->
+<div class="mission-strip">
+  <div class="stat">
+    <div class="stat-num">120+</div>
+    <div class="stat-label">Destinations Curated</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-num">40k</div>
+    <div class="stat-label">Travellers Guided</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-num">6</div>
+    <div class="stat-label">Years of Expertise</div>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="story">
+  <div class="story-img">
+    <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=900&q=80" alt="Travel planning"/>
+  </div>
+  <div class="story-text">
+    <span class="eyebrow">Our story</span>
+    <div class="gold-rule"></div>
+    <h2>Passionate Explorers, Precise Recommendations</h2>
+    <p>AeroDropX was born from a single conviction: great travel begins with great information. Founded in 2019, we set out to build the most thoughtfully curated destination guide on the planet.</p>
+    <p>We don't scrape lists or rank by popularity. Every recommendation is researched by travellers who have lived the experience — from the salt-sprayed shores of the Maldives to the lantern-lit corridors of Kyoto.</p>
+    <p>Our mission is simple: to help you find the places that will genuinely change you.</p>
+  </div>
+</div>
+
+<!-- TEAM -->
+<section class="team-section">
+  <h2>Meet the Team</h2>
+  <p class="team-sub">The explorers behind every recommendation</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Alex Morgan"/>
+      <div class="team-card-body">
+        <div class="team-name">Alex Morgan</div>
+        <div class="team-role">Founder & Chief Explorer</div>
+        <div class="team-bio">Backpacked across 70 countries over a decade. Alex built AeroDropX to share the wisdom that only time on the road can teach.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80" alt="Priya Nair"/>
+      <div class="team-card-body">
+        <div class="team-name">Priya Nair</div>
+        <div class="team-role">Asia Pacific Lead</div>
+        <div class="team-bio">Born in Kerala, Priya has spent 8 years mapping the temples, coasts, and hidden valleys of South and Southeast Asia.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80" alt="Carlos Reyes"/>
+      <div class="team-card-body">
+        <div class="team-name">Carlos Reyes</div>
+        <div class="team-role">Content & Experience Director</div>
+        <div class="team-bio">Former travel journalist who has written for Condé Nast and National Geographic. Carlos ensures every word we write earns its place.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <h2>What We Stand For</h2>
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="value-icon">🧭</div>
+      <div class="value-title">Authentic Discovery</div>
+      <div class="value-text">We only recommend places we've experienced first-hand. No sponsorships. No paid placements. Just honest guidance.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">🌍</div>
+      <div class="value-title">Responsible Travel</div>
+      <div class="value-text">We champion sustainable tourism — protecting the communities and ecosystems that make these destinations extraordinary.</div>
+    </div>
+    <div class="value-item">
+      <div class="value-icon">✨</div>
+      <div class="value-title">Refined Curation</div>
+      <div class="value-text">Quality over quantity. We'd rather give you three perfect recommendations than thirty mediocre ones.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <h2>Ready to Explore?</h2>
+  <p>Browse our curated destinations or reach out — we love helping travellers plan their perfect journey.</p>
+  <a href="contact.html" class="btn-gold">Get in Touch</a>
+</section>
+
+<footer>
+  <span style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold)">AeroDropX</span>
+  <span>© 2025 AeroDropX. All rights reserved.</span>
+  <div style="display:flex;gap:24px">
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
 
 </body>
 </html>
